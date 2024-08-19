@@ -102,6 +102,8 @@
 
       vscode
       gsound
+
+      obs-studio
     #  thunderbird
     ];
   };
