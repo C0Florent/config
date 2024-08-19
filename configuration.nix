@@ -124,6 +124,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    moreutils
+
     vim
     neovim
     git
