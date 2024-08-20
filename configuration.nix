@@ -144,6 +144,8 @@
     gnumake
     cargo
 
+    home-manager
+
     stdmanpages
     linux-manual
     man-pages
