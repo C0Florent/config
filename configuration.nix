@@ -129,6 +129,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     moreutils
+    nerdfonts
 
     vim
     neovim
