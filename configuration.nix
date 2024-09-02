@@ -88,6 +88,7 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "discord"
     "vscode"
+    "google-chrome"
   ];
 
 
@@ -102,7 +103,6 @@
       teams-for-linux
       (mgba.override { lua = pkgs.lua5_4_compat; })
 
-      vscode
       gsound
 
       obs-studio
