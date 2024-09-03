@@ -122,6 +122,8 @@
       user.email = "florent.charpentier@epitech.eu";
 
       init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      pull.rebase = true;
     };
   };
 
