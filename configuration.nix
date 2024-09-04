@@ -152,6 +152,7 @@
     stdmanpages
     linux-manual
     man-pages
+    vlc
   #  wget
   ];
 
