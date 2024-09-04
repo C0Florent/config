@@ -147,6 +147,9 @@
     gnumake
     cargo
 
+    docker
+    docker-compose
+
     home-manager
 
     stdmanpages
@@ -155,6 +158,8 @@
     vlc
   #  wget
   ];
+
+  virtualisation.docker.enable = true;
 
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
