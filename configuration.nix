@@ -96,7 +96,7 @@
   users.users.fcharpentier = {
     isNormalUser = true;
     description = "Florent Charpentier";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
       discord
