@@ -26,6 +26,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  networking.firewall.allowedUDPPorts = [ 8080 ];
+
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
