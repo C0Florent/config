@@ -152,8 +152,6 @@
     docker
     docker-compose
 
-    home-manager
-
     stdmanpages
     linux-manual
     man-pages
