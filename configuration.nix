@@ -9,6 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
+      ./hyprland.nix
+
       ./keyboard/numlock.nix
     ];
 
@@ -50,9 +52,16 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
+  # Enable SDDM sessing manager
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+
+  services.desktopManager.plasma6.enable = lib.mkDefault true;
+
+  specialisation = {
+    no-plasma.configuration = {
+      services.desktopManager.plasma6.enable = false;
+    };
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
