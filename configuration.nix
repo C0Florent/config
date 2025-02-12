@@ -76,7 +76,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -137,9 +137,7 @@
     };
   };
 
-  fonts.packages = with pkgs; [
-    nerdfonts
-  ];
+  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
