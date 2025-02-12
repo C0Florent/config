@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
 
       ./hyprland.nix
+      ./registry.nix
 
       ./keyboard/numlock.nix
     ];

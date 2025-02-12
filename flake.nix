@@ -26,6 +26,7 @@
       ];
 
       specialArgs = {
+        inherit inputs;
         inherit (inputs) hyprland;
 
         pkgs-stable = nixpkgs-stable.legacyPackages.${system};
