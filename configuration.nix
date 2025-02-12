@@ -108,7 +108,6 @@
     description = "Florent Charpentier";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-      kdePackages.kate
       discord
       teams-for-linux
       (mgba.override { lua = pkgs.lua5_4_compat; })
@@ -116,7 +115,6 @@
       gsound
 
       obs-studio
-    #  thunderbird
     ];
   };
 
