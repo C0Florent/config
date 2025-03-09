@@ -4,6 +4,7 @@
   programs.hyprland = {
     enable = lib.mkDefault true;
     package = hyprland.packages."${pkgs.system}".hyprland;
+    xwayland.enable = true;
 
     withUWSM = true;
   };
