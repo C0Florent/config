@@ -95,7 +95,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.experimental-features = "nix-command flakes pipe-operators";
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "discord"
