@@ -6,13 +6,7 @@
 
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland/v0.47.2-b";
-
-      # hyprwm/Hyprland branch v0.47.2-b has an
-      # outdated hyprutils input, so we override it here
-      inputs.hyprutils.url = "github:hyprwm/hyprutils/v0.5.0";
-    };
+    hyprland.url = "github:hyprwm/Hyprland/v0.48.1-b";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, ... }@inputs: {
