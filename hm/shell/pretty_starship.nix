@@ -128,6 +128,7 @@ in
         symbol = "[](${inv_style_str m_shlvl})[](${style_str m_shlvl})";
         format = "[$symbol]($style)";
         style = style_str m_directory;
+        repeat_offset = 1;
       };
       username = {
         style_user = style_str m_username;
