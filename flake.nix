@@ -31,8 +31,8 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11"; # change to main in next commit
-      inputs.nixpkgs.follows = "nixpkgs-stable"; # remove this -stable in next commit
+      url = "github:nix-community/home-manager/";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -46,6 +46,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
     pkgs-stable = nixpkgs-stable.legacyPackages.${system};
     vscode-extensions = nix-vscode-extensions.extensions.${system};
+    mylib = import ./mylib.nix { inherit (pkgs) lib; };
   in {
     # NixOS configuration
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
@@ -53,26 +54,22 @@
       modules = [ ./nixos/configuration.nix ];
 
       specialArgs = {
-        inherit inputs;
-        inherit (inputs) hyprland;
-
-        pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+        inherit inputs pkgs-stable mylib;
+        inherit (inputs) hyprland; # remove next commit
       };
     };
 
     # Home-manager configuration
     homeConfigurations."fcharpentier" = inputs.home-manager.lib.homeManagerConfiguration {
       # change the stable/latest pkgs management in next commit
-      pkgs = pkgs-stable;
+      inherit pkgs;
 
       modules = [ ./hm/home.nix ];
 
       extraSpecialArgs = {
-        inherit vscode-extensions;
-        inherit (inputs) plasma-manager;
-        
-        pkgs-latest = pkgs;
-        mylib = import ./mylib.nix { inherit (pkgs-stable) lib; };
+        inherit pkgs-stable inputs mylib;
+        inherit vscode-extensions; # remove next commit
+        inherit (inputs) plasma-manager; # remove next commit
       };
     };
   } // pkgs.lib.packagesFromDirectoryRecursive {

@@ -1,8 +1,7 @@
-{ pkgs-latest, vscode-extensions, ... }:
+{ pkgs, vscode-extensions, ... }:
 
 let
   extensions = vscode-extensions;
-  pkgs = pkgs-latest;
 in
 {
   programs.vscode = {
@@ -10,7 +9,7 @@ in
     enable = true;
     mutableExtensionsDir = false;
 
-    extensions =
+    profiles.default.extensions =
     with extensions.vscode-marketplace;
     with pkgs.vscode-extensions; [
       vscode-icons-team.vscode-icons
@@ -49,7 +48,7 @@ in
       usernamehw.errorlens
     ];
 
-    keybindings = [
+    profiles.default.keybindings = [
       {
         key = "ctrl+[Backquote]";
         command = "terminal.focus";
@@ -89,7 +88,7 @@ in
       }
     ];
 
-    userSettings = {
+    profiles.default.userSettings = {
       "git.openRepositoryInParentFolders" = "always";
       "window.menuBarVisibility" = "toggle";
       "window.titleBarStyle" = "custom";
