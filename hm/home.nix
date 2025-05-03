@@ -14,6 +14,7 @@ rec {
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   imports = [
+    ../packages.nix
     ./shell/bash.nix
     ./shell/nu.nix
     ./shell/starship.nix
@@ -26,7 +27,6 @@ rec {
     ./btop
     ./lazygit.nix
     ./delta.nix
-    ./packages.nix
     ./plasma
     ./hypr
     ./wezterm.nix
