@@ -1,4 +1,4 @@
-inputs@{ config, pkgs, lib, pkgs-latest, vscode-extensions, ... }:
+inputs@{ config, pkgs, lib, pkgs-stable, vscode-extensions, ... }:
 
 rec {
   home.username = "fcharpentier";
@@ -32,12 +32,10 @@ rec {
     ./wezterm.nix
   ];
 
-  home.packages = (with pkgs; [
+  # This ref to pkgs-stable may or may not be relevant.
+  home.packages = (with pkgs-stable; [
     # Simple tree directory lister
     tree
-
-    # Wayland clipboard CLI tools
-    wl-clipboard
 
     # Clang compiler and associated tools
     clang
@@ -50,8 +48,10 @@ rec {
     legendary-gl
     rare
     wineWowPackages.waylandFull
-  ]) ++ (with pkgs-latest; [
+  ]) ++ (with pkgs; [
     gh
+
+    wl-clipboard
   ]);
 
   home.file = {
