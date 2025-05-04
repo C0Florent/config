@@ -55,21 +55,17 @@
 
       specialArgs = {
         inherit inputs pkgs-stable mylib;
-        inherit (inputs) hyprland; # remove next commit
       };
     };
 
     # Home-manager configuration
     homeConfigurations."fcharpentier" = inputs.home-manager.lib.homeManagerConfiguration {
-      # change the stable/latest pkgs management in next commit
       inherit pkgs;
 
       modules = [ ./hm/home.nix ];
 
       extraSpecialArgs = {
-        inherit pkgs-stable inputs mylib;
-        inherit vscode-extensions; # remove next commit
-        inherit (inputs) plasma-manager; # remove next commit
+        inherit inputs pkgs-stable mylib vscode-extensions;
       };
     };
   } // pkgs.lib.packagesFromDirectoryRecursive {
