@@ -1,9 +1,9 @@
-{ pkgs, lib, hyprland, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   programs.hyprland = {
     enable = lib.mkDefault true;
-    package = hyprland.packages."${pkgs.system}".hyprland;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     xwayland.enable = true;
 
     withUWSM = true;
