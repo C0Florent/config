@@ -14,7 +14,7 @@ rec {
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   imports = [
-    ../packages.nix
+    ./packages.nix
     ./shell/bash.nix
     ./shell/nu.nix
     ./shell/starship.nix
