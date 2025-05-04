@@ -48,8 +48,13 @@
     vscode-extensions = nix-vscode-extensions.extensions.${system};
     mylib = import ./mylib.nix { inherit (pkgs) lib; };
 
+    mypkgs = pkgs.lib.packagesFromDirectoryRecursive {
+      inherit (pkgs) callPackage;
+      directory = ./packages;
+    };
+
     spArgs = {
-      inherit inputs pkgs-stable mylib;
+      inherit inputs pkgs-stable mylib mypkgs;
     };
   in {
     # NixOS configuration
@@ -70,8 +75,7 @@
         inherit vscode-extensions;
       };
     };
-  } // pkgs.lib.packagesFromDirectoryRecursive {
-    inherit (pkgs) callPackage;
-    directory = ./packages;
+
+    packages = mypkgs;
   };
 }
