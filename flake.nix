@@ -47,15 +47,17 @@
     pkgs-stable = nixpkgs-stable.legacyPackages.${system};
     vscode-extensions = nix-vscode-extensions.extensions.${system};
     mylib = import ./mylib.nix { inherit (pkgs) lib; };
+
+    spArgs = {
+      inherit inputs pkgs-stable mylib;
+    };
   in {
     # NixOS configuration
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
       inherit system;
       modules = [ ./nixos/configuration.nix ];
 
-      specialArgs = {
-        inherit inputs pkgs-stable mylib;
-      };
+      specialArgs = spArgs;
     };
 
     # Home-manager configuration
@@ -64,8 +66,8 @@
 
       modules = [ ./hm/home.nix ];
 
-      extraSpecialArgs = {
-        inherit inputs pkgs-stable mylib vscode-extensions;
+      extraSpecialArgs = spArgs // {
+        inherit vscode-extensions;
       };
     };
   } // pkgs.lib.packagesFromDirectoryRecursive {
