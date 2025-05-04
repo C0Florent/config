@@ -134,7 +134,7 @@ in
         style_user = style_str m_username;
         style_root = style_str m_username_root;
         format = lib.concatStrings [
-          "[˒](${style_str m_general})[($user)]($style)"
+          "[˒](${style_str m_general})[($user )]($style)"
         ];
         aliases = { "${config.home.username}" = ""; };
       };
