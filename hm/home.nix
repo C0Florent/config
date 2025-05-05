@@ -30,6 +30,7 @@ rec {
     ./plasma
     ./hypr
     ./wezterm.nix
+    ./gtk.nix
   ];
 
   # This ref to pkgs-stable may or may not be relevant.
