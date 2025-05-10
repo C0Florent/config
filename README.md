@@ -27,7 +27,8 @@ I'll have to write this another time...
 
 - This repo is a merge of my previously separated repos for my NixOS and home-manager configs.
 - The NixOS config is not very elaborate, I did not tweak very much beyond the default.
-- You'll see my commit convention is "\<scope\>: \<[gitmoji](https://gitmoji.dev)\> \<present-tense verb> ...".
+- You'll see my commit convention is "\<[gitmoji](https://gitmoji.dev)\> \<scope\>: \<present-tense verb\> ...".
     - No scope means treewide implicitly
     - Before the [great merge](https://github.com/C0Florent/config/commit/d1d6f541fa4b04d92c33641f1d7b5d5573545499), I was using the preterit tense.
+    - I'm quite attached to my commit history, actively trying to keep it readable and searchable, willingly force-pushing amended commits when appropriate
 - FOSS is great. Thanks to every dev which contributed in tools I use (that's a lot of people!)
