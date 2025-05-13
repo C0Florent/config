@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 
 ## PortaBashrc
-# This file is intended to be a minimal, portable "bashrc" which can
-# turn any bash session into a feature-complete shell experience (kind of)
+# This file is intended to be a minimal, portable "bashrc" which I made to
+# not feel homesick too quickly when I can't bring my whole system config,
+# for example when connecting to servers or containers via ssh.
 #
 # It can typically be used by sourcing this file into an active shell session:
 # $ source <(curl -L https://github.com/C0Florent/fcharpentier-home-manager/blob/main/portabashrc?raw=true)
 
-cat <<EOF
+IFS= read -d '' -r PBRC_ASCII_ART <<"EOF"
     /====\                              /===\                    /
    /     /          .     /            /    /                   /      .
   /=====/  /====\  /==,  /==  /====/  /====|   /====/  /===='  /      /==,  /===
  /        /     / /     /    /    /  /     /  /    /   \--\   /===/  /     /
-/         \====/ /      \_   \===|  /=====/   \===|  ,====/  /   /  /      \===
+/         \====/ /      \_   \===/| /=====/   \===/| ,====/  /   /  /      \===
 EOF
+
+echo "$PBRC_ASCII_ART"
+echo
 
 PS1='\n\[\e[0;36m\][\[\e[1;36m\]\u@\h\[\e[1;37m\]:\[\e[1;34m\]\w\[\e[0;36m\]]\n\[\e[1;32m\](\[\e[1;31m\]$(printf "%.i" $?)\[\e[1;32m\])\[\e[0m\]\$ '
 
@@ -21,8 +25,68 @@ alias ls='ls --color=auto'
 alias ll='ls -l'
 alias l='ls -alh'
 
+alias grep='grep --color=auto'
+
 alias gs='git status'
 alias gd='git diff'
 alias gc='git commit'
+alias gcm='git commit -m'
+alias gcam='git commit -am'
 alias ga='git add'
 alias gb='git branch'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gpff='git push --force'
+alias gpl='git pull'
+alias grb='git rebase'
+alias grbc='git rebase --continue'
+alias gcl='git clone'
+alias gl='git clone'
+alias gd='git diff'
+alias gst='git stash'
+alias gstp='git stash pop'
+alias gsw='git switch'
+alias gswc='git switch -c'
+alias gr='git restore'
+alias grs='git restore -s'
+alias gm='git merge'
+alias gf='git fetch'
+
+# Function which 'scans' for commands.
+# Synopsis:
+#   prbc_scan command [alternatives]...
+# Will output the `command` name followed by the result of the scan:
+#   - If the command is directly available, a checkmark
+#   - If at least one `alternative` is available, a tilde followed by matched alternatives
+#   - Otherwise, an X sign indicating the command is unavailable
+pbrc_pscan() {
+    if [ $# -eq 0 ]; then
+        return
+    fi
+
+    echo -n "Scan for $1: "
+    if command -v "$1" >/dev/null; then
+        echo $'\e[1;32m✓\e[0m'
+        return
+    fi
+
+    shift
+    declare -a alts
+    for alt in "$@"; do
+        if command -v "$alt" >/dev/null; then
+            alts+=("$alt")
+        fi
+    done
+
+    if [ ${#alts[@]} -eq 0 ]; then
+        echo $'\e[1;31m✘\e[0m'
+        return 1
+    fi
+
+    echo -n $'\e[1;33m~\e[0m'
+    printf -- $' - \e[4m%s\e[0m' "${alts[@]}"
+    echo
+}
+
+echo 'Scanning for program availability:'
+pbrc_pscan vim nvim vi nano emacs
