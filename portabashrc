@@ -6,7 +6,11 @@
 # for example when connecting to servers or containers via ssh.
 #
 # It can typically be used by sourcing this file into an active shell session:
-# $ source <(curl -L https://github.com/C0Florent/fcharpentier-home-manager/blob/main/portabashrc?raw=true)
+# $ source <(curl -L https://github.com/C0Florent/config/blob/main/portabashrc?raw=true)
+#
+# The "PBRC" prefix stands for PortaBashRC
+#                              ^    ^   ^^
+# This will not "leak" any bindings not prefixed by PBRC/pbrc/_pbrc
 
 IFS= read -d '' -r PBRC_ASCII_ART <<"EOF"
     /====\                              /===\                    /
