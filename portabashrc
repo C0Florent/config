@@ -96,5 +96,13 @@ pbrc_pscan() {
     echo
 }
 
-echo 'Scanning for program availability:'
-pbrc_pscan vim nvim vi nano emacs
+pbrc_pscan_basic() {
+    echo 'Scanning for program availability:'
+
+    pbrc_pscan vim nvim vi nano emacs
+    pbrc_pscan git
+    pbrc_pscan tree eza exa
+    pbrc_pscan eza exa ls
+}
+
+pbrc_pscan_basic
