@@ -15,7 +15,7 @@
 
     # Input from the latest stable release for
     # some software which should be kept stable
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # Input from hyprland's flake to get the reproducible build
     hyprland = {
