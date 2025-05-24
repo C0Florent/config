@@ -18,7 +18,10 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     # Input from hyprland's flake to get the reproducible build
-    hyprland.url = "github:hyprwm/Hyprland/v0.49.0";
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.49.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
