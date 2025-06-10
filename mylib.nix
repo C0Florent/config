@@ -9,6 +9,13 @@ let
     )
     (builtins.attrValues attrSet)
   ;
+
+  concatAttrSetOfList = s1: s2:
+    builtins.zipAttrsWith (_: builtins.concatLists) [s1 s2]
+  ;
 in {
-  inherit attrsToListRec;
+  inherit
+    attrsToListRec
+    concatAttrSetOfList
+  ;
 }

@@ -9,6 +9,9 @@
     ./animations.nix
     ./dwindle.nix
     ./cursor.nix
+
+    ./modules/superbinds.nix
+    ./superbinds.nix
   ];
 
   wayland.windowManager.hyprland = {
