@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, mycfg, ... }:
 
 let
   left  = "h";
@@ -8,36 +8,36 @@ let
 in
 
 {
-  wayland.windowManager.hyprland.settings = {
+  mycfg.hypr.superbinds.superbinds = {
     bind = [
-      "$mainMod, ${left},  movefocus, l"
-      "$mainMod, ${down},  movefocus, d"
-      "$mainMod, ${up},    movefocus, u"
-      "$mainMod, ${right}, movefocus, r"
+      ", ${left},  movefocus, l"
+      ", ${down},  movefocus, d"
+      ", ${up},    movefocus, u"
+      ", ${right}, movefocus, r"
 
-      "$mainMod + SHIFT, ${left},  swapwindow, l"
-      "$mainMod + SHIFT, ${down},  swapwindow, d"
-      "$mainMod + SHIFT, ${up},    swapwindow, u"
-      "$mainMod + SHIFT, ${right}, swapwindow, r"
+      "SHIFT, ${left},  swapwindow, l"
+      "SHIFT, ${down},  swapwindow, d"
+      "SHIFT, ${up},    swapwindow, u"
+      "SHIFT, ${right}, swapwindow, r"
 
-      "$mainMod + CTRL, ${left},  workspace, m-1"
-      "$mainMod + CTRL, ${right}, workspace, m+1"
-      "$mainMod + CTRL, ${up},    workspace, r+1"
-      "$mainMod + CTRL, ${down},  workspace, r-1"
+      "CTRL, ${left},  workspace, m-1"
+      "CTRL, ${right}, workspace, m+1"
+      "CTRL, ${up},    workspace, r+1"
+      "CTRL, ${down},  workspace, r-1"
 
-      "$mainMod + CTRL + SHIFT, ${left},  movetoworkspace, r-1"
-      "$mainMod + CTRL + SHIFT, ${right}, movetoworkspace, r+1"
-      "$mainMod + CTRL + SHIFT, ${up},    movetoworkspace, m+1"
-      "$mainMod + CTRL + SHIFT, ${down},  movetoworkspace, m-1"
+      "CTRL + SHIFT, ${left},  movetoworkspace, r-1"
+      "CTRL + SHIFT, ${right}, movetoworkspace, r+1"
+      "CTRL + SHIFT, ${up},    movetoworkspace, m+1"
+      "CTRL + SHIFT, ${down},  movetoworkspace, m-1"
     ];
 
     bindte = let
       px = builtins.toString 72;
     in[
-      "$mainMod + ALT, ${left},  resizeactive, -${px} 0"
-      "$mainMod + ALT, ${right}, resizeactive,  ${px} 0"
-      "$mainMod + ALT, ${up},    resizeactive, 0 -${px}"
-      "$mainMod + ALT, ${down},  resizeactive, 0  ${px}"
+      "ALT, ${left},  resizeactive, -${px} 0"
+      "ALT, ${right}, resizeactive,  ${px} 0"
+      "ALT, ${up},    resizeactive, 0 -${px}"
+      "ALT, ${down},  resizeactive, 0  ${px}"
     ];
   };
 }

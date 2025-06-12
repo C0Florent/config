@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, mycfg, ... }:
 
 let
   lmb = "mouse:272";
@@ -11,6 +11,26 @@ in
     ./directions.nix
     ./workspaces.nix
   ];
+
+  mycfg.hypr.superbinds.superbinds = {
+    bindm = [
+      # Allow actions to be performed with LMB or SPACE for touchpad control
+      ", ${lmb}, movewindow"
+      ", SPACE,  movewindow"
+
+      "ALT, ${lmb}, resizewindow"
+      "ALT, SPACE,  resizewindow"
+      ", ${rmb}, resizewindow"
+    ];
+
+    bind = [
+      ", Q, exec, $launchApp alacritty"
+      "SHIFT, Q, exec, [float] $launchApp alacritty"
+      ", W, exec, $launchApp firefox"
+      ", C, killactive"
+      ", F, togglefloating"
+    ];
+  };
 
   wayland.windowManager.hyprland = {
     settings = {
@@ -33,25 +53,9 @@ in
         rounding = 8;
       };
 
-      bindm = [
-        # Allow actions to be performed with LMB or SPACE for touchpad control
-        "$mainMod, ${lmb}, movewindow"
-        "$mainMod, SPACE,  movewindow"
-
-        "$mainMod + ALT, ${lmb}, resizewindow"
-        "$mainMod + ALT, SPACE,  resizewindow"
-        "$mainMod, ${rmb}, resizewindow"
-      ];
-
+      # Some session-related binds that we specfically don't want in superbinds
       bind = [
-        "$mainMod, Q, exec, $launchApp alacritty"
-        "$mainMod + SHIFT, Q, exec, [float] $launchApp alacritty"
-        "$mainMod, W, exec, $launchApp firefox"
-        "$mainMod, C, killactive"
-        "$mainMod, F, togglefloating"
-
         "$mainMod + CTRL, X, exec, uwsm stop"
-
         "$mainMod, Escape, exec, hyprlock"
       ];
 

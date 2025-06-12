@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, mycfg, ... }:
 
 let
   workspaceRange = lib.range 1 12;
@@ -22,11 +22,11 @@ let
   concatMap-workspaces = traverse-workspaces builtins.concatMap;
 in
 {
-  wayland.windowManager.hyprland.settings = {
+  mycfg.hypr.superbinds.superbinds = {
     bind = concatMap-workspaces (key: ws: [
-      "$mainMod, ${key}, workspace, ${ws}"
-      "$mainMod + SHIFT + CTRL, ${key}, movetoworkspace, ${ws}"
-      "$mainMod + SHIFT, ${key}, movetoworkspace, ${ws}"
+      ", ${key}, workspace, ${ws}"
+      "SHIFT + CTRL, ${key}, movetoworkspace, ${ws}"
+      "SHIFT, ${key}, movetoworkspace, ${ws}"
     ]);
   };
 }
