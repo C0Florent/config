@@ -72,10 +72,9 @@ in
       prefixedBinds = builtins.mapAttrs (n: builtins.map (v: "${cfg.mod} + ${v}")) actualBinds;
     in
     {
-      extraConfig = mkSubMap
-        { inherit (cfg) catchAllReset; }
-        cfg.submapName
-        (mylib.concatAttrSetOfList actualBinds cfg.exitBind)
+      submaps.${cfg.submapName}.settings = mylib.concatAttrSetOfList
+        actualBinds
+        cfg.exitBind
       ;
 
       settings = mylib.concatAttrSetOfList cfg.enterBind prefixedBinds;
