@@ -1,12 +1,19 @@
 { pkgs, lib, inputs, ... }:
 
 {
+  imports = [
+    ./modules/hyprland.nix
+  ];
+
   programs.hyprland = {
     enable = lib.mkDefault true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     xwayland.enable = true;
 
     withUWSM = true;
+  };
+
+  mycfg.hyprland = {
+    usePackageFromFlake = true;
   };
 
   environment.sessionVariables = {
