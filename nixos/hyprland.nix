@@ -13,7 +13,7 @@
   };
 
   mycfg.hyprland = {
-    usePackageFromFlake = true;
+    usePackageFromFlake = false;
   };
 
   environment.sessionVariables = {

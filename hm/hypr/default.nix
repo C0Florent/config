@@ -17,6 +17,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
+    # As the doc says, disable the HM package when using Hyprland from NixOS
+    package = null;
     systemd.variables = [ "--all" ];
   };
 }
