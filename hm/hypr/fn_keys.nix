@@ -23,6 +23,7 @@
       ", XF86AudioPlay, exec, playerctl play-pause"
       ", XF86AudioPrev, exec, playerctl previous"
       ", Print, exec, hyprshot -m output"
+      "SHIFT, Print, exec, hyprshot -m region"
     ];
   };
 }
