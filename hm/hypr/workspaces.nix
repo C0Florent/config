@@ -25,8 +25,12 @@ in
   mycfg.hypr.superbinds.superbinds = {
     bind = concatMap-workspaces (key: ws: [
       ", ${key}, workspace, ${ws}"
+
       "SHIFT + CTRL, ${key}, movetoworkspace, ${ws}"
-      "SHIFT, ${key}, movetoworkspace, ${ws}"
+      "SHIFT,        ${key}, movetoworkspace, ${ws}"
+
+      "SHIFT +        ALT, ${key}, movetoworkspacesilent, ${ws}"
+      "SHIFT + CTRL + ALT, ${key}, movetoworkspacesilent, ${ws}"
     ]);
   };
 }
