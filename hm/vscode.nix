@@ -46,6 +46,8 @@ in
 
       vscodevim.vim
       usernamehw.errorlens
+
+      myriad-dreamin.tinymist
     ];
 
     profiles.default.keybindings = [
