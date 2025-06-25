@@ -37,6 +37,10 @@ in
       "$mainMod" = "SUPER";
       "$launchApp" = "uwsm app --";
 
+      layerrule = [
+        "noanim, selection"
+      ];
+
       general = {
         # Hacky hard-coded night owl gradient (cyan-blue-magenta)
         "col.active_border" = "rgb(7fdbca) rgb(82aaff) rgb(c792ea) 45deg";
