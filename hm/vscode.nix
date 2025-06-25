@@ -52,12 +52,12 @@ in
 
     profiles.default.keybindings = [
       {
-        key = "ctrl+[Backquote]";
-        command = "terminal.focus";
+        key = "ctrl+[Quote]";
+        command = "workbench.action.terminal.toggleTerminal";
         when = null;
       }
       {
-        key = "ctrl+[Quote]";
+        key = "ctrl+[Backquote]";
         command = "workbench.action.navigateBack";
         when = "canNavigateBack";
       }
