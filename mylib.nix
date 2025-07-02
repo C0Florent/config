@@ -13,9 +13,12 @@ let
   concatAttrSetOfList = s1: s2:
     builtins.zipAttrsWith (_: builtins.concatLists) [s1 s2]
   ;
+
+  readFileLines = path: builtins.readFile path |> lib.splitString "\n";
 in {
   inherit
     attrsToListRec
     concatAttrSetOfList
+    readFileLines
   ;
 }
