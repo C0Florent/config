@@ -27,7 +27,10 @@ in
       ", Q, exec, $launchApp alacritty"
       "SHIFT, Q, exec, [float] $launchApp alacritty"
       ", W, exec, $launchApp firefox"
+
       ", C, killactive"
+      "SHIFT , C, forcekillactive"
+
       ", F, togglefloating"
     ];
   };
