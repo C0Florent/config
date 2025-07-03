@@ -128,9 +128,6 @@
 
     prompt.enable = true;
     config = {
-      user.name = "Florent Charpentier";
-      user.email = "florent.charpentier@epitech.eu";
-
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;

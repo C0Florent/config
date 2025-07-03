@@ -31,6 +31,7 @@ rec {
     ./hypr
     ./wezterm.nix
     ./gtk.nix
+    ./git.nix
   ];
 
   # This ref to pkgs-stable may or may not be relevant.
