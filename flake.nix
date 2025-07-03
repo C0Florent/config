@@ -61,7 +61,7 @@
     };
   in {
     # NixOS configuration
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.lahp = nixpkgs.lib.nixosSystem rec {
       inherit system;
       modules = [ ./nixos/configuration.nix ];
 
