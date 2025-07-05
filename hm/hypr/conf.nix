@@ -3,6 +3,7 @@
 let
   lmb = "mouse:272";
   rmb = "mouse:273";
+  mid = "mouse:274";
 in
 
 {
@@ -30,6 +31,8 @@ in
 
       ", C, killactive"
       "SHIFT , C, forcekillactive"
+      ", ${mid}, killactive"
+      "SHIFT , ${mid}, forcekillactive"
 
       ", F, togglefloating"
     ];
