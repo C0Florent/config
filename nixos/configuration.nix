@@ -11,8 +11,6 @@
 
       ./hyprland.nix
       ./registry.nix
-
-      ./keyboard/numlock.nix
     ];
 
   # Bootloader.
