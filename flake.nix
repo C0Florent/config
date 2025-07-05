@@ -60,10 +60,9 @@
       inherit inputs pkgs-stable mylib mypkgs;
     };
   in {
-    # NixOS configuration
-    nixosConfigurations.lahp = nixpkgs.lib.nixosSystem rec {
+    # Read all NixOS hosts from ./nixos/hosts using a custom function from mylib
+    nixosConfigurations = mylib.readNixOSHosts nixpkgs.lib.nixosSystem ./nixos/hosts [ ] {
       inherit system;
-      modules = [ ./nixos/configuration.nix ];
 
       specialArgs = spArgs;
     };
