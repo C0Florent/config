@@ -18,5 +18,5 @@ pkgs.writeShellScriptBin "differ" ''
     ${wl-paste} > expected
     echo $'\e[3;37m copied!\e[0m'
 
-    ${delta} actual expected
+    ${delta} actual expected && echo $'\n== \e[3;37mExact match!\e[0m =='
 ''
