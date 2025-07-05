@@ -5,122 +5,82 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [ #notdef
+    ./hardware-configuration.nix
 
-      ../../hyprland.nix
-      ../../registry.nix
-    ];
+    ../../hyprland.nix
+    ../../registry.nix
+  ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader.systemd-boot.enable = true; #def?
+  boot.loader.efi.canTouchEfiVariables = true; #def?
+  boot.kernelPackages = pkgs.linuxPackages_latest; #def?
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true; #def?
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.firewall.allowedUDPPorts = [ 8080 ]; #notdef
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  time.timeZone = "Europe/Paris"; #def?
 
-  networking.firewall.allowedUDPPorts = [ 8080 ];
+  i18n = { #def?
+    defaultLocale = "en_GB.UTF-8"; #notdef
 
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
+    extraLocaleSettings = { #def?
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver.enable = true; # def
 
-  # Enable SDDM sessing manager
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true; # def
 
-  services.desktopManager.plasma6.enable = lib.mkDefault true;
+  services.desktopManager.plasma6.enable = lib.mkDefault true; # def
 
-  specialisation = {
+  specialisation = { # notdef
     no-plasma.configuration = {
       services.desktopManager.plasma6.enable = false;
     };
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
+  services.xserver.xkb = { # def
     layout = "fr";
     variant = "oss";
   };
 
-  # Configure console keymap
-  console.keyMap = "fr";
+  console.keyMap = "fr"; # def?
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = true; # def?
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
+  services.pulseaudio.enable = false; #def?
+  security.rtkit.enable = true; #def?
+  services.pipewire = { #def?
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
 
     jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  nix.settings.experimental-features = "nix-command flakes pipe-operators"; # def
 
-  nix.settings.experimental-features = "nix-command flakes pipe-operators";
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "discord"
-    "google-chrome"
-  ];
-
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.fcharpentier = {
+  users.users.fcharpentier = { #notdef
     isNormalUser = true;
     description = "Florent Charpentier";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      discord
-      teams-for-linux
-      (mgba.override { lua = pkgs.lua5_4_compat; })
-
-      gsound
-
-      obs-studio
-    ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox.enable = true; #def?
 
-  programs.git =  {
+  programs.git = { # def
     enable = true;
 
     prompt.enable = true;
@@ -131,67 +91,38 @@
     };
   };
 
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts); #def?
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    moreutils
+    moreutils # def
 
-    vim
-    neovim
-    git
-    neofetch
-    gh
+    vim # def
+    neovim #def?
+    git # def
+    neofetch # def
+    gh #def?
 
-    lua5_4
+    lua5_4 #notdef
 
-    ghc
-    valgrind
-    libgccjit
-    gnumake
-    cargo
+    ghc #def?
+    valgrind #notdef
+    libgccjit #notdef
+    gnumake #notdef
+    cargo #notdef
 
-    docker
-    docker-compose
+    docker #def?
+    docker-compose #def?
 
-    stdmanpages
-    linux-manual
-    man-pages
-    vlc
-  #  wget
+    stdmanpages # def
+    linux-manual # def
+    man-pages # def
+    vlc # def
   ];
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true; #def?
 
-  programs.neovim.enable = true;
-  programs.neovim.defaultEditor = true;
+  programs.neovim.enable = true; #def?
+  programs.neovim.defaultEditor = true; #def?
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-
+  system.stateVersion = "25.05"; #notdef
 }
