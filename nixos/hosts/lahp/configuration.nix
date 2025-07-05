@@ -9,8 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      ./hyprland.nix
-      ./registry.nix
+      ../../hyprland.nix
+      ../../registry.nix
     ];
 
   # Bootloader.
