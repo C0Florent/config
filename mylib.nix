@@ -28,12 +28,12 @@ let
     builtins.readDir hostsDirPath
       |> lib.filterAttrs (n: v: v == "directory")
       |> lib.filterAttrs (n: v: !builtins.elem n skipEntries)
-      |> builtins.mapAttrs (n: v: nixosSystem ({
+      |> builtins.mapAttrs (n: v: nixosSystem (attrs // {
             modules = [
               (hostsDirPath + "/${n}")
               { networking.hostName = n; }
-            ];
-          } // attrs
+            ] ++ lib.optional (attrs ? modules) attrs.modules;
+          }
         ))
   ;
 in {
