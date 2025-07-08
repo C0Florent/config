@@ -10,6 +10,7 @@
 
     ../../hyprland.nix
     ../../registry.nix
+    ../../nerdfonts.nix
   ];
 
   mycfg.sanedefaults.enable = true;
@@ -32,12 +33,6 @@
     };
   };
 
-  specialisation = { # notdef
-    no-plasma.configuration = {
-      services.desktopManager.plasma6.enable = false;
-    };
-  };
-
   console.keyMap = "fr"; # def?
 
   users.users.fcharpentier = { #notdef
@@ -46,29 +41,15 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts); #def?
-
   environment.systemPackages = with pkgs; [
-    neovim #def?
     gh #def?
 
     lua5_4 #notdef
 
     ghc #def?
-    valgrind #notdef
-    libgccjit #notdef
-    gnumake #notdef
-    cargo #notdef
-
-    docker #def?
-    docker-compose #def?
-
   ];
 
   virtualisation.docker.enable = true; #def?
-
-  programs.neovim.enable = true; #def?
-  programs.neovim.defaultEditor = true; #def?
 
   system.stateVersion = "25.05"; #notdef
 }
