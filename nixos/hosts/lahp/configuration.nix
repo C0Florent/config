@@ -131,7 +131,25 @@
     };
   };
 
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts = {
+    packages = with pkgs; [
+      twemoji-color-font
+    ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+
+    enableDefaultPackages = false;
+
+    fontDir.enable = true;
+    fontconfig = {
+      subpixel.rgba = "rgb"; # Subpixel rendering
+      antialias = true;
+      hinting.enable = true;
+      useEmbeddedBitmaps = true; # for better rendering of Calibri like fonts
+      cache32Bit = true;
+      defaultFonts = {
+        emoji = [ "Twitter Color Emoji" ];
+      };
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
