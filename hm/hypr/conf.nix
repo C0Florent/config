@@ -35,6 +35,7 @@ in
       "SHIFT , ${mid}, forcekillactive"
 
       ", F, togglefloating"
+      "SHIFT, F, fullscreen"
     ];
   };
 
