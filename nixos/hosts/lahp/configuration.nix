@@ -148,12 +148,6 @@
 
     ghc
     valgrind
-    libgccjit
-    gnumake
-    cargo
-
-    docker
-    docker-compose
 
     stdmanpages
     linux-manual
