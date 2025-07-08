@@ -19,17 +19,18 @@ let
   # Reads for directories inside <hostsDirPath>
   # The names of these directories will be the attribute names in
   # the returned attrset.
-  # The attribute values will the result of <nixosSystem> with
+  # The attribute values will be the result of <nixosSystem> with
   # modules being <hostsDirPath>/<host>/default.nix
   # The hostname will be set automatically.
   # Directories listed in <skipEntries> will be skipped
-  # (Attrset -> NixOS configuration ) -> Path -> [String] -> AttrSet -> AttrSet of NixOS configurations
+  # (Attrset -> NixOS configuration) -> Path -> [String] -> AttrSet -> AttrSet of NixOS configurations
   readNixOSHosts = nixosSystem: hostsDirPath: skipEntries: attrs:
     builtins.readDir hostsDirPath
       |> lib.filterAttrs (n: v: v == "directory")
       |> lib.filterAttrs (n: v: !builtins.elem n skipEntries)
       |> builtins.mapAttrs (n: v: nixosSystem (attrs // {
             modules = [
+              ./nixos/modules
               (hostsDirPath + "/${n}")
               { networking.hostName = n; }
             ] ++ lib.optional (attrs ? modules) attrs.modules;
