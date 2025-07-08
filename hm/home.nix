@@ -39,10 +39,6 @@ rec {
     # Simple tree directory lister
     tree
 
-    # Clang compiler and associated tools
-    clang
-    clang-tools
-
     # CLI tool to unzip zip archives
     unzip
 
