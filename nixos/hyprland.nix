@@ -1,10 +1,6 @@
 { pkgs, lib, inputs, ... }:
 
 {
-  imports = [
-    ./modules/hyprland.nix
-  ];
-
   programs.hyprland = {
     enable = lib.mkDefault true;
     xwayland.enable = true;
