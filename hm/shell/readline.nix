@@ -14,7 +14,7 @@
 
     bindings = {
       # Based on this example: https://stackoverflow.com/q/4200800/
-      "\\ev" = ''"\C-k \C-ueval \"$(wl-paste | vipe --suffix sh)\"\n"'';
+      "\\ev" = ''"\C-k \C-ueval \"$(wl-paste | vipe --suffix sh | tee >(wl-copy -n))\"\n"'';
     };
   };
 }
