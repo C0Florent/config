@@ -18,7 +18,7 @@
       };
       normal = {
         black = "#011627";
-        red = "#EF5350";
+        red = "#F78C6C";
         green = "#22da6e";
         yellow = "#c5e478";
         blue = "#82AAFF";
