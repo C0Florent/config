@@ -48,6 +48,8 @@ in
       usernamehw.errorlens
 
       myriad-dreamin.tinymist
+
+      circlecodesolution.ccs-flutter-color
     ];
 
     profiles.default.keybindings = [
