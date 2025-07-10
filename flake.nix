@@ -34,7 +34,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/";
+      url = "github:C0Florent/home-manager/hyprland-animations";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
