@@ -11,6 +11,7 @@
 
       ../../hyprland.nix
       ../../registry.nix
+      ../../nerdfonts.nix
     ];
 
   # Bootloader.
@@ -130,8 +131,6 @@
       pull.rebase = true;
     };
   };
-
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
