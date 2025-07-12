@@ -1,11 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ #notdef
+  imports = [
     ./hardware-configuration.nix
 
     ../../hyprland.nix
@@ -15,12 +11,12 @@
 
   mycfg.sanedefaults.enable = true;
 
-  time.timeZone = "Europe/Paris"; #def?
+  time.timeZone = "Europe/Paris";
 
-  i18n = { #def?
-    defaultLocale = "en_GB.UTF-8"; #notdef
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
 
-    extraLocaleSettings = { #def?
+    extraLocaleSettings = {
       LC_ADDRESS = "fr_FR.UTF-8";
       LC_IDENTIFICATION = "fr_FR.UTF-8";
       LC_MEASUREMENT = "fr_FR.UTF-8";
@@ -33,23 +29,18 @@
     };
   };
 
-  console.keyMap = "fr"; # def?
+  console.keyMap = "fr";
 
-  users.users.fcharpentier = { #notdef
+  users.users.fcharpentier = {
     isNormalUser = true;
     description = "Florent Charpentier";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   environment.systemPackages = with pkgs; [
-    gh #def?
-
-    lua5_4 #notdef
-
-    ghc #def?
+    gh
+    ghc
   ];
 
-  virtualisation.docker.enable = true; #def?
-
-  system.stateVersion = "25.05"; #notdef
+  system.stateVersion = "25.05";
 }
