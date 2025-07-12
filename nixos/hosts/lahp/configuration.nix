@@ -96,26 +96,11 @@
 
   nix.settings.experimental-features = "nix-command flakes pipe-operators";
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "discord"
-    "google-chrome"
-  ];
-
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fcharpentier = {
     isNormalUser = true;
     description = "Florent Charpentier";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      discord
-      teams-for-linux
-      (mgba.override { lua = pkgs.lua5_4_compat; })
-
-      gsound
-
-      obs-studio
-    ];
   };
 
   # Install firefox.
