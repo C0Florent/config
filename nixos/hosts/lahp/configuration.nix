@@ -15,7 +15,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  time.timeZone = "Europe/Paris";
+  time.timeZone = "Australia/Melbourne";
   i18n = {
     defaultLocale = "en_GB.UTF-8";
 
