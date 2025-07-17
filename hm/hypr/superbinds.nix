@@ -15,7 +15,7 @@ in
       # is a bit off with my global animations
       bindr = [
         "SUPER, Super_L, exec, hyprctl --batch '${lib.concatStringsSep " ; " [
-          "keyword animation windowsMove, 1, 4, easeOutCubic" # transition curve
+          "keyword animation windowsMove, 1, 4, easeInOutCubic" # transition curve
           "keyword general:gaps_out 36"
           "keyword general:gaps_in 24"
         ]}'"

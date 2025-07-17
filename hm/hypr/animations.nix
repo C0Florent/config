@@ -13,6 +13,7 @@
         "easeOutBack, .07, 1.4, 0.4, .92"
         "easeOutCubic, .22, .61, .36, 1"
         "easeInCubic, .61, .22, 1, .36"
+        "easeInOutCubic, .65, .05, .36, 1"
       ];
 
       windowrulev2 = [
