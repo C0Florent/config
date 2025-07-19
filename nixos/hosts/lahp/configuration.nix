@@ -12,6 +12,7 @@
   # Enable my sane defaults, which enables all options to
   # to have a working desktop, with some packages I like
   mycfg.sanedefaults.enable = true;
+  mycfg.hyprland.usePackageFromFlake = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
