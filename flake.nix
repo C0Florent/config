@@ -38,6 +38,11 @@
       url = "github:C0Florent/home-manager/hyprland-animations";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -52,9 +57,16 @@
     vscode-extensions = nix-vscode-extensions.extensions.${system};
     mylib = import ./mylib.nix { inherit (pkgs) lib; };
 
+    nvf = inputs.nvf.lib.neovimConfiguration {
+      inherit pkgs;
+      modules = [ ./nvf ];
+    };
+
     mypkgs = pkgs.lib.packagesFromDirectoryRecursive {
       inherit (pkgs) callPackage;
       directory = ./packages;
+    } // {
+      inherit (nvf) neovim;
     };
 
     spArgs = {
