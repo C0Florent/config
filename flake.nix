@@ -19,7 +19,8 @@
 
     # Input from hyprland's flake to get the reproducible build
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.50.0";
+      # Temporarily build from my fix PR branch 
+      url = "github:C0Florent/Hyprland/fix-edge-ws-swipe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
