@@ -10,6 +10,12 @@ let
   ++ [{
     key = "Tab";
     ws  = "previous";
+  } {
+    key = "mouse_up";
+    ws  = "r+1";
+  } {
+    key = "mouse_down";
+    ws  = "r-1";
   }];
 
   # ((a -> b) -> [a] -> c) -> (KEY -> WORKSPACE -> b) -> c
