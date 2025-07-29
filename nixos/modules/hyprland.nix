@@ -15,9 +15,11 @@ in
   };
 
   config = {
-    programs.hyprland.package = if cfg.usePackageFromFlake
-      then inputs.hyprland.packages."${pkgs.system}".hyprland
-      else pkgs.hyprland
-    ;
+    programs.hyprland = let
+      hyprpkgs = inputs.hyprland.packages.${pkgs.system};
+    in lib.optionalAttrs cfg.usePackageFromFlake {
+      package = hyprpkgs.hyprland;
+      portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
+    };
   };
 }
