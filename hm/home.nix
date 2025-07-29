@@ -43,6 +43,7 @@ rec {
     wineWowPackages.waylandFull
   ]) ++ (with pkgs; [
     gh # GitHub CLI
+    glab # GitLab CLI
 
     wl-clipboard # CLI clipboard: wl-copy, wl-paste
 
