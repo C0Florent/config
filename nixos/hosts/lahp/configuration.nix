@@ -4,6 +4,8 @@
   imports = [
     ./hardware-configuration.nix
 
+    ./monash.nix
+
     ../../hyprland.nix
     ../../registry.nix
     ../../nerdfonts.nix
