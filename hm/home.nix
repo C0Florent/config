@@ -23,6 +23,7 @@ rec {
     ./wezterm.nix
     ./gtk.nix
     ./git.nix
+    ./ghci.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
