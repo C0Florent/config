@@ -20,10 +20,27 @@
     half-dr = ''\xe0ba'';
     half-ur = ''\xe0be'';
   in {
-    text = ''
-       -- Set the GHCi prompt to be a truecolor haskell logo
-       -- (unfortunately without the equals sign)
-      :set prompt "\n${ansiColor { fg = hs-purp-dark.fg; bg = "40"; }}${half-ur}${half-dl}${ansiColor { fg = hs-purp.fg; }}${half-ur}${half-dl}${ansiColor{ fg = hs-purp-light.fg; bg = "49"; }} %s\n${ansiColor { fg = hs-purp-dark.fg; }}${half-dr}${half-ul}${ansiColor { fg = hs-purp.fg; }}${half-dr}${ansiColor { fg = "30"; bg = hs-purp.bg; }}\x1fb6f${ansiColor { bg = "49"; fg = hs-purp.fg; }}${half-dl}${ansiColor { fg = "0"; }} "
-    '';
+    text = lib.concatStrings [
+      ''
+        -- \\  Set the GHCi prompt to be a truecolor haskell logo
+        -- //\ (unfortunately without the equals sign)
+      ''
+
+      # The whole prompt will be a single haskell string, written here
+      # as several lines for readability
+      '':set prompt "\n''
+
+      # Upper part, the two \\ followed by the loaded modules (%s)
+      ''${ansiColor { fg = hs-purp-dark.fg; bg = "40";  }}${half-ur}${half-dl}'' # 1st \
+      ''${ansiColor { fg = hs-purp.fg;                  }}${half-ur}${half-dl}'' # 2nd \
+      ''${ansiColor { fg = hs-purp-light.fg; bg = "49"; }} %s\n'' # module info
+
+      # Lower part (//\ shape), NOTE the /\ is rendered with fg and bg swapped
+      ''${ansiColor { fg = hs-purp-dark.fg;       }}${half-dr}${half-ul}'' # 1st /
+      ''${ansiColor { fg = hs-purp.fg;            }}${half-dr}'' # 1st char of the /\
+      ''${ansiColor { fg = "30"; bg = hs-purp.bg; }}\x1fb6f'' # Hacky /\
+      ''${ansiColor { bg = "49"; fg = hs-purp.fg; }}${half-dl}'' # Close the \
+      ''${ansiColor { fg = "0"; }} "'' # Reset term color
+     ];
   };
 }
