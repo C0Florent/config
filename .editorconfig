@@ -1,0 +1,16 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+[*.{bash,json,lock,md,nix,sh}]
+indent_style = space
+
+[*.{json,lock,md,nix,sh,bash}]
+indent_size = 2
+
+[*.lock]
+indent_size = unset
