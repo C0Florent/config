@@ -25,6 +25,7 @@ rec {
     ./git.nix
     ./ghci.nix
     ./monash.nix
+    ./gh.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -44,7 +45,6 @@ rec {
     rare
     wineWowPackages.waylandFull
   ]) ++ (with pkgs; [
-    gh # GitHub CLI
     glab # GitLab CLI
 
     wl-clipboard # CLI clipboard: wl-copy, wl-paste
