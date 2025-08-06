@@ -91,6 +91,6 @@
       };
     };
 
-    packages = mypkgs;
+    packages = mypkgs // { inherit nvf; };
   };
 }
