@@ -13,6 +13,8 @@
 
       "²" = "true";
 
+      l = "ls -alh";
+
       ga = "git add";
       gc = "git commit";
       gcm = "git commit -m";
