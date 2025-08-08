@@ -7,6 +7,8 @@
     ../../hyprland.nix
     ../../registry.nix
     ../../nerdfonts.nix
+
+    ./monash
   ];
 
   # Enable my sane defaults, which enables all options to
