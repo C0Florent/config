@@ -8,6 +8,14 @@
       oracle.sql-developer
       mongodb.mongodb-vscode
     ];
+
+    profiles.default.userSettings = {
+      "sqldeveloper.database.nls.territory" = "AUSTRALIA";
+      "sqldeveloper.database.nls.ISOCurrency" = "AUSTRALIA";
+      "sqldeveloper.format.general.keywordCase" = "UPPER";
+      "sqldeveloper.format.indentation.identSpaces" = 4;
+      "sqldeveloper.format.lineBreaks.maxCharLineWidth" = 80;
+    };
   };
 
   programs.git = {
