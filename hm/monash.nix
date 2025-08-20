@@ -7,6 +7,9 @@
     with pkgs.vscode-extensions; [
       oracle.sql-developer
       mongodb.mongodb-vscode
+
+      mdk.vega-preview
+      randomfractalsinc.vscode-vega-viewer
     ];
 
     profiles.default.userSettings = {
