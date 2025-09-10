@@ -1,4 +1,4 @@
-inputs@{ config, pkgs, lib, pkgs-stable, vscode-extensions, ... }:
+{ config, pkgs, lib, pkgs-stable, inputs, ... }:
 
 rec {
   home.username = "fcharpentier";
@@ -54,8 +54,9 @@ rec {
     (mgba.override { lua = pkgs.lua5_4_compat; }) # Override needed for scripts
 
     obs-studio
-  ]);
 
+  ])
+  ++ [ inputs.unspace.packages.${pkgs.system}.unspace ];
   home.file = {
     ".bash_completion".text = ''
       COMPAL_AUTO_UNMASK=1

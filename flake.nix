@@ -44,6 +44,11 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    unspace = {
+      url = "github:C0Florent/unspace";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

@@ -555,7 +555,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nvf": "nvf",
-        "plasma-manager": "plasma-manager"
+        "plasma-manager": "plasma-manager",
+        "unspace": "unspace"
       }
     },
     "systems": {
@@ -600,6 +601,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "unspace": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757071991,
+        "narHash": "sha256-ruRS1RckOHEHM1UGv7qIQi5UIaOQ1TKpZfIUZTMd1Dk=",
+        "owner": "C0Florent",
+        "repo": "unspace",
+        "rev": "584bcc818aecdc67f34c588f06f5c7690e7c55e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "C0Florent",
+        "repo": "unspace",
         "type": "github"
       }
     },
