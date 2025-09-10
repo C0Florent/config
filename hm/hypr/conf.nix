@@ -83,9 +83,15 @@ in
         };
       };
 
+      gesture = [
+        "3, horizontal, workspace"
+
+        "3, up, close"
+        "3, pinchin, fullscreen"
+        "3, pinchout, float"
+        "4, right, workspace, 1"
+      ];
       gestures = {
-        workspace_swipe = true;
-        workspace_swipe_min_fingers = true;
         workspace_swipe_distance = 200;
       };
 

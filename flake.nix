@@ -19,13 +19,14 @@
 
     # Input from hyprland's flake to get the reproducible build
     hyprland = {
-      # Temporarily build from my fix PR branch 
-      url = "github:C0Florent/Hyprland/fix-edge-ws-swipe";
+      # Temporarily build from my fix PR branch
+      url = "github:hyprwm/Hyprland/v0.51.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     plasma-manager = {
