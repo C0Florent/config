@@ -6,6 +6,8 @@
       windows     = "1, 3.5, easeOutBack, slide";
       windowsMove = "1, 3.5, easeOutBack, slide";
       windowsOut  = "1, 5,   easeOutBack, slide";
+
+      workspaces = "1, 3, easeOutSteep";
     };
 
     settings = {
@@ -14,6 +16,8 @@
         "easeOutCubic, .22, .61, .36, 1"
         "easeInCubic, .61, .22, 1, .36"
         "easeInOutCubic, .65, .05, .36, 1"
+
+        "easeOutSteep, .19, 1, .22, 1"
       ];
 
       windowrulev2 = [
