@@ -44,6 +44,8 @@
 
       lg = "lazygit";
 
+      prints = "printf -- '- %s\n'";
+
       epishell = ''docker run --rm -v "$(pwd):/usr/local/bugs/delivery" -it -w '/usr/local/bugs/delivery' -p 4242:4242 epitechcontent/epitest-docker'';
     };
 
