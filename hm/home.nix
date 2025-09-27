@@ -26,6 +26,7 @@ rec {
     ./ghci.nix
     ./monash.nix
     ./gh.nix
+    ./gpg.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
