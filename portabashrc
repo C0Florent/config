@@ -27,7 +27,7 @@ PS1='\n\[\e[0;36m\][\[\e[1;36m\]\u@\h\[\e[1;37m\]:\[\e[1;34m\]\w\[\e[0;36m\]]\n\
 
 alias ls='ls --color=auto'
 alias ll='ls -l'
-alias l='ls -alh'
+alias l='ls -Alh'
 
 alias grep='grep --color=auto'
 
