@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.lazygit = {
@@ -12,6 +12,9 @@
         colorArg = "always";
         pager = "delta --dark --paging=never";
       };
+      gui.theme.selectedLineBgColor = [
+        config.programs.alacritty.settings.colors.selection.background
+      ];
     };
 
   };
