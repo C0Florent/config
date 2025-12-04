@@ -6,6 +6,7 @@
     wireplumber
     playerctl
     hyprshot
+    grim
   ];
 
   wayland.windowManager.hyprland.settings = {
@@ -24,6 +25,14 @@
       ", XF86AudioPrev, exec, playerctl previous"
       ", Print, exec, hyprshot -m output"
       "SHIFT, Print, exec, hyprshot -m region"
+      "ALT, Print, exec, flameshot gui"
     ];
+  };
+
+  services.flameshot = {
+    enable = true;
+    settings.General = {
+      useGrimAdapter = true;
+    };
   };
 }
