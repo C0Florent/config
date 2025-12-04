@@ -40,11 +40,6 @@ rec {
 
     # CLI tool to unzip zip archives
     unzip
-
-    # FOSS alternative Epic Games launcher: CLI and GUI
-    legendary-gl
-    rare
-    wineWowPackages.waylandFull
   ]) ++ (with pkgs; [
     glab # GitLab CLI
 
@@ -56,6 +51,10 @@ rec {
 
     obs-studio
 
+    # FOSS alternative Epic Games launcher: CLI and GUI
+    legendary-gl
+    rare
+    wineWowPackages.waylandFull
   ])
   ++ [ inputs.unspace.packages.${pkgs.system}.unspace ];
   home.file = {
