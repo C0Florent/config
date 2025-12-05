@@ -12,12 +12,12 @@
 
     settings = {
       bezier = [
-        "easeOutBack, .07, 1.4, 0.4, .92"
-        "easeOutCubic, .22, .61, .36, 1"
-        "easeInCubic, .61, .22, 1, .36"
-        "easeInOutCubic, .65, .05, .36, 1"
+        "easeOutBack, 0.07, 1.4, 0.4, 0.92"
+        "easeOutCubic, 0.22, 0.61, 0.36, 1"
+        "easeInCubic, 0.61, 0.22, 1, 0.36"
+        "easeInOutCubic, 0.65, 0.05, 0.36, 1"
 
-        "easeOutSteep, .19, 1, .22, 1"
+        "easeOutSteep, 0.19, 1, 0.22, 1"
       ];
 
       windowrulev2 = [

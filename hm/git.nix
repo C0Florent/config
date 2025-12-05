@@ -1,11 +1,15 @@
-{ pkgs, lib , ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.git = {
     enable = true;
 
-    userName = "Florent Charpentier";
-    userEmail = "florent.charpentier@epitech.eu";
+    settings = {
+      user.name = "Florent Charpentier";
+      user.email = "florent.charpentier@epitech.eu";
+    };
 
     signing = {
       signByDefault = true;

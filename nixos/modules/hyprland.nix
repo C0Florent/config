@@ -16,7 +16,7 @@ in
 
   config = {
     programs.hyprland = let
-      hyprpkgs = inputs.hyprland.packages.${pkgs.system};
+      hyprpkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
     in lib.optionalAttrs cfg.usePackageFromFlake {
       package = hyprpkgs.hyprland;
       portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;

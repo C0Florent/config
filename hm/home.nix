@@ -56,7 +56,8 @@ rec {
     rare
     wineWowPackages.waylandFull
   ])
-  ++ [ inputs.unspace.packages.${pkgs.system}.unspace ];
+  ++ [ inputs.unspace.packages.${pkgs.stdenv.hostPlatform.system}.unspace ];
+
   home.file = {
     ".bash_completion".text = ''
       COMPAL_AUTO_UNMASK=1
