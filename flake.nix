@@ -19,8 +19,7 @@
 
     # Input from hyprland's flake to get the reproducible build
     hyprland = {
-      # Temporarily build from my fix PR branch
-      url = "github:hyprwm/Hyprland/v0.51.0";
+      url = "github:hyprwm/Hyprland/v0.52.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
