@@ -5,10 +5,18 @@ let
 in
 
 pkgs.writeShellScriptBin "mvd" ''
+    help() {
+        echo "USAGE: $0 [from [to]]"
+        echo "DEFAULT: from ~/Downloads to ."
+    }
+
     if [ $# -gt 2 ]; then
-        echo "USAGE: $0 [from [to]]" >&2
-        echo "DEFAULT: from ~/Downloads to ." >&2
+        help >&2
         exit 1
+    fi
+    if [ "$1" = "--help" ]; then
+        help
+        exit
     fi
 
     from=''${1:-~/Downloads}
