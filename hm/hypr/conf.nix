@@ -1,4 +1,4 @@
-{ pkgs, lib, config, mycfg, ... }:
+{ pkgs, lib, config, mycfg, mypkgs, ... }:
 
 let
   lmb = "mouse:272";
@@ -36,6 +36,8 @@ in
 
       ", F, togglefloating"
       "SHIFT, F, fullscreen"
+
+      ", Z, exec, ${lib.getExe mypkgs.scripts.hyprppause} || hyprctl notify 4 5000 'rgb(ffae51)' 'hyprppause failed'"
     ];
   };
 
