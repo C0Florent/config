@@ -31,7 +31,7 @@
       '':set prompt "\n''
 
       # Upper part, the two \\ followed by the loaded modules (%s)
-      ''${ansiColor { fg = hs-purp-dark.fg; bg = "40";  }}${half-ur}${half-dl}'' # 1st \
+      ''${ansiColor { fg = hs-purp-dark.fg; bg = "49";  }}${half-ur}${half-dl}'' # 1st \
       ''${ansiColor { fg = hs-purp.fg;                  }}${half-ur}${half-dl}'' # 2nd \
       ''${ansiColor { fg = hs-purp-light.fg; bg = "49"; }} %s\n'' # module info
 
