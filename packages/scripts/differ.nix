@@ -14,15 +14,19 @@ in
 pkgs.writeShellScriptBin "differ" ''
     cd /tmp
 
-    echo -n $'Put \e[31mactual\e[0m output in clipboard and press enter...'
-    read
-    ${wl-paste} > actual
-    ${show-copied}
+    if [ "$1" = "--again" ]; then
+      echo 'Repeating same diff as last invocation:'
+    else
+      echo -n $'Put \e[31mactual\e[0m output in clipboard and press enter...'
+      read
+      ${wl-paste} > actual
+      ${show-copied}
 
-    echo -n $'Put \e[32mexpected\e[0m output in clipboard and press enter...'
-    read
-    ${wl-paste} > expected
-    ${show-copied}
+      echo -n $'Put \e[32mexpected\e[0m output in clipboard and press enter...'
+      read
+      ${wl-paste} > expected
+      ${show-copied}
+    fi
 
     ${delta} actual expected && echo $'\n== \e[3;37mExact match!\e[0m =='
 ''
