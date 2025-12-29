@@ -51,51 +51,95 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixpkgs-stable,
     nix-vscode-extensions,
     ...
   }@inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    pkgs-stable = nixpkgs-stable.legacyPackages.${system};
-    vscode-extensions = nix-vscode-extensions.extensions.${system};
-    mylib = import ./mylib.nix { inherit (pkgs) lib; };
+    mapSystems = nixpkgs.lib.genAttrs [
+      "aarch64-darwin"
+      "aarch64-linux"
+      "x86_64-darwin"
+      "x86_64-linux"
+    ];
+    # Runs a function which takes pkgs from nixpkgs unstable for all systems,
+    # returning an attrset of systems where the function has been applied for
+    # all systems
+    # (pkgs -> a) -> { <system> = a; }
+    forAllSystems = f: mapSystems (system: f nixpkgs.legacyPackages.${system});
 
-    nvf = inputs.nvf.lib.neovimConfiguration {
+    # Run a function which takes several "forAllSystems" attributes
+    # { <name>.<system> = a; } -> ({ <name> = a; } -> b) -> { <system> = b; }
+    mapAttrsSystems = attrs: f:
+      mapSystems (system: f (builtins.mapAttrs (n: v: v.${system}) attrs))
+    ;
+
+    mylib = import ./mylib.nix { inherit (nixpkgs) lib; };
+
+    nvf = forAllSystems (pkgs: inputs.nvf.lib.neovimConfiguration {
       inherit pkgs;
       modules = [ ./nvf ];
-    };
+    });
 
-    mypkgs = pkgs.lib.packagesFromDirectoryRecursive {
+    mypkgs = forAllSystems (pkgs: pkgs.lib.packagesFromDirectoryRecursive {
       inherit (pkgs) callPackage;
       directory = ./packages;
-    } // {
-      inherit (nvf) neovim;
-    };
+    });
 
-    spArgs = {
-      inherit inputs pkgs-stable mylib mypkgs;
-    };
+    spArgs = mapAttrsSystems
+      {
+        pkgs-stable = nixpkgs-stable.legacyPackages;
+        inherit mypkgs;
+      }
+      ({ pkgs-stable, mypkgs }: {
+        inherit inputs pkgs-stable mylib mypkgs;
+      })
+    ;
   in {
     # Read all NixOS hosts from ./nixos/hosts using a custom function from mylib
-    nixosConfigurations = mylib.readNixOSHosts nixpkgs.lib.nixosSystem ./nixos/hosts [ ] {
-      inherit system;
+    nixosConfigurations = mylib.readNixOSHosts {
+      inherit (nixpkgs.lib) nixosSystem;
 
-      specialArgs = spArgs;
+      hostsDirPath = ./nixos/hosts;
+      args = ({ system }: {
+        specialArgs = spArgs.${system};
+      });
     };
 
     # Home-manager configuration
-    homeConfigurations."fcharpentier" = inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    homeConfigurations = mapAttrsSystems
+      {
+        inherit spArgs;
+        pkgs = nixpkgs.legacyPackages;
+        vscode-extensions = nix-vscode-extensions.extensions;
+      }
+      ({ pkgs, vscode-extensions, spArgs }: {
+          fcharpentier = inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
 
-      modules = [ ./hm/home.nix ];
+            modules = [ ./hm/home.nix ];
 
-      extraSpecialArgs = spArgs // {
-        inherit vscode-extensions;
-      };
-    };
+            extraSpecialArgs = spArgs // {
+              inherit vscode-extensions;
+            };
+          };
+        }
+      )
+    ;
 
-    packages = mypkgs // { inherit nvf; };
+    legacyPackages = mapAttrsSystems
+      { inherit (self) homeConfigurations; }
+      ({ homeConfigurations }: {
+        inherit homeConfigurations;
+      })
+    ;
+
+    packages = mapAttrsSystems
+      { inherit mypkgs nvf; inherit (self) homeConfigurations; }
+      ({ mypkgs, nvf, homeConfigurations }: mypkgs // {
+        nvf = nvf.neovim;
+      })
+    ;
   };
 }

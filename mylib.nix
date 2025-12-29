@@ -16,6 +16,11 @@ let
 
   readFileLines = path: builtins.readFile path |> lib.splitString "\n";
 
+  importOr = path: default: if builtins.pathExists path
+    then import path
+    else default
+  ;
+
   # Reads for directories inside <hostsDirPath>
   # The names of these directories will be the attribute names in
   # the returned attrset.
@@ -23,19 +28,41 @@ let
   # modules being <hostsDirPath>/<host>/default.nix
   # The hostname will be set automatically.
   # Directories listed in <skipEntries> will be skipped
-  # (Attrset -> NixOS configuration) -> Path -> [String] -> AttrSet -> AttrSet of NixOS configurations
-  readNixOSHosts = nixosSystem: hostsDirPath: skipEntries: attrs:
+  # AttrSet -> AttrSet of NixOS configurations
+  readNixOSHosts = {
+    # (Attrset -> NixOS configuration)
+    nixosSystem,
+
+    # Path
+    hostsDirPath,
+
+    # [String]
+    skipEntries ? [ ],
+
+    # Attrset
+    args ? (_: { }),
+  }:
     builtins.readDir hostsDirPath
       |> lib.filterAttrs (n: v: v == "directory")
       |> lib.filterAttrs (n: v: !builtins.elem n skipEntries)
-      |> builtins.mapAttrs (n: v: nixosSystem (attrs // {
-            modules = [
-              ./nixos/modules
-              (hostsDirPath + "/${n}")
-              { networking.hostName = n; }
-            ] ++ lib.optional (attrs ? modules) attrs.modules;
-          }
-        ))
+      |> builtins.mapAttrs (n: v: let
+        hostPath = /${hostsDirPath}/${n};
+        system = let
+          path = /${hostPath}/system.nix;
+          default = "x86_64-linux";
+        in importOr
+          path
+          (lib.warn "File ${path} not found, defaulting to ${default}" default)
+        ;
+        evalArgs = args { inherit system; };
+      in nixosSystem (evalArgs // {
+        inherit system;
+        modules = [
+          ./nixos/modules
+          /${hostPath}/configuration.nix
+          { networking.hostName = n; }
+        ] ++ lib.optionals (evalArgs ? modules) evalArgs.modules;
+      }))
   ;
 in {
   inherit

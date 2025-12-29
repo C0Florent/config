@@ -37,7 +37,7 @@ in
       ", F, togglefloating"
       "SHIFT, F, fullscreen"
 
-      ", Z, exec, ${lib.getExe mypkgs.scripts.hyprppause} || hyprctl notify 4 5000 'rgb(ffae51)' 'hyprppause failed'"
+      ", Z, exec, ${lib.getExe mypkgs.hyprppause} || hyprctl notify 4 5000 'rgb(ffae51)' 'hyprppause failed'"
     ];
   };
 
