@@ -1,8 +1,8 @@
-{pkgs, ...}:
+{ pkgs, lib, ... }:
 
 let
-  gh = "${pkgs.gh}/bin/gh";
-  fzf = "${pkgs.fzf}/bin/fzf";
+  gh = lib.getExe pkgs.gh;
+  fzf = lib.getExe pkgs.fzf;
 in
 
 pkgs.writeShellScriptBin "ghcl" ''

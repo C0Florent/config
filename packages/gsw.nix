@@ -1,8 +1,8 @@
-{pkgs, ...}:
+{ pkgs, lib, ... }:
 
 let
-  fzf = "${pkgs.fzf}/bin/fzf";
-  xargs = "${pkgs.toybox}/bin/xargs";
+  fzf = lib.getExe pkgs.fzf;
+  xargs = lib.getExe' pkgs.toybox "xargs";
 in
 
 pkgs.writeShellScriptBin "gsw" ''

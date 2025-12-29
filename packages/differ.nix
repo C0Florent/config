@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
-  delta = "${pkgs.delta}/bin/delta";
-  wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+  delta = lib.getExe pkgs.delta;
+  wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
 
   show-copied = ''
     lines='n/a'; words='n/a'; bytes='n/a'
