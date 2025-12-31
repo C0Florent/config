@@ -20,10 +20,21 @@
         "easeOutSteep, 0.19, 1, 0.22, 1"
       ];
 
-      windowrulev2 = [
-        "animation gnomed, onworkspace:w[tv1]"
-        "animation gnomed, floating:1"
-      ];
+      layerrule = [{
+        name = "fix_screenshot";
+        no_anim = true;
+        "match:namespace" = "selection";
+      }];
+
+      windowrule = [{
+       name = "singlewindow-1";
+       animation = "gnomed";
+       "match:float" = 1;
+      } {
+        name = "singlewindow-2";
+        animation = "gnomed";
+        "match:workspace" = "w[tv1]";
+      }];
     };
   };
 }

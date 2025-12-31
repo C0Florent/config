@@ -38,6 +38,10 @@ in
       "SHIFT, F, fullscreen"
 
       ", Z, exec, ${lib.getExe mypkgs.hyprppause} || hyprctl notify 4 5000 'rgb(ffae51)' 'hyprppause failed'"
+
+      # ", M, exec ${pkgs.writeShellScriptBin "showWorkDir" ''
+      #   hyprctl notify 1 5000 'rgb(0000ff)' "$(readlink "/proc/$(hyprctl activewindow -j | ${lib.getExe pkgs.jq} -r .pid)/cwd")"
+      # ''}"
     ];
   };
 
@@ -45,10 +49,6 @@ in
     settings = {
       "$mainMod" = "SUPER";
       "$launchApp" = "uwsm app --";
-
-      layerrule = [
-        "noanim, selection"
-      ];
 
       general = {
         # Hacky hard-coded night owl gradient (cyan-blue-magenta)
