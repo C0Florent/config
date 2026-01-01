@@ -17,6 +17,10 @@
   mycfg.hyprland.usePackageFromFlake = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernel.sysctl = {
+    # allow all SysRq sequences to be used
+    "kernel.sysrq" = 1;
+  };
 
   time.timeZone = "Australia/Melbourne";
   i18n = {
