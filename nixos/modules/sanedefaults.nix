@@ -26,6 +26,8 @@ in
 
   config = let
     defPkgs = with pkgs; [
+      nh
+
       moreutils
 
       neofetch

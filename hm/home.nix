@@ -41,6 +41,7 @@ rec {
     # CLI tool to unzip zip archives
     unzip
   ]) ++ (with pkgs; [
+    nh
     glab # GitLab CLI
 
     wl-clipboard # CLI clipboard: wl-copy, wl-paste
