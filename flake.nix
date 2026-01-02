@@ -19,7 +19,7 @@
 
     # Input from hyprland's flake to get the reproducible build
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.53.0";
+      url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
