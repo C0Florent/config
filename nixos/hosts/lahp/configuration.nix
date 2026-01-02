@@ -39,11 +39,8 @@
     };
   };
 
-  specialisation = {
-    no-plasma.configuration = {
-      services.desktopManager.plasma6.enable = false;
-    };
-  };
+  # turn off plasma (which is enabled by sanedefaults), lahp is full-on hyprland
+  services.desktopManager.plasma6.enable = false;
 
   services.xserver.xkb = {
     layout = "fr";
