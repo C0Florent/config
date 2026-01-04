@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-stable, inputs, ... }:
+{ config, pkgs, lib, pkgs-stable, inputs, nvf, ... }:
 
 rec {
   home.username = "fcharpentier";
@@ -57,7 +57,10 @@ rec {
     rare
     wineWowPackages.waylandFull
   ])
-  ++ [ inputs.unspace.packages.${pkgs.stdenv.hostPlatform.system}.unspace ];
+  ++ [
+    inputs.unspace.packages.${pkgs.stdenv.hostPlatform.system}.unspace
+    nvf.neovim
+  ];
 
   home.file = {
     ".bash_completion".text = ''

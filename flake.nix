@@ -110,18 +110,18 @@
     # Home-manager configuration
     homeConfigurations = mapAttrsSystems
       {
-        inherit spArgs;
+        inherit spArgs nvf;
         pkgs = nixpkgs.legacyPackages;
         vscode-extensions = nix-vscode-extensions.extensions;
       }
-      ({ pkgs, vscode-extensions, spArgs }: {
+      ({ pkgs, vscode-extensions, nvf, spArgs }: {
           fcharpentier = inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
 
             modules = [ ./hm/home.nix ];
 
             extraSpecialArgs = spArgs // {
-              inherit vscode-extensions;
+              inherit vscode-extensions nvf;
             };
           };
         }
