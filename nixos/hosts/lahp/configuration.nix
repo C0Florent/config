@@ -8,13 +8,15 @@
     ../../registry.nix
     ../../nerdfonts.nix
 
+    ./nodebounce.nix
+
     ./monash
   ];
 
   # Enable my sane defaults, which enables all options to
   # to have a working desktop, with some packages I like
   mycfg.sanedefaults.enable = true;
-  mycfg.hyprland.usePackageFromFlake = true;
+  mycfg.hyprland.usePackageFromFlake = false;
   mycfg.hyprland.debug = false; # switch to true to use a debug build
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
