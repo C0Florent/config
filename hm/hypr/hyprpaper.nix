@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   services.hyprpaper = {
@@ -7,13 +7,10 @@
     settings = {
       "$background" = "${./assets/background.png}";
 
-      preload = [
-        "$background"
-      ];
-
-      wallpaper = [
-        ", $background"
-      ];
+      wallpaper = {
+        monitor = "";
+        path = "$background";
+      };
 
       splash = false;
     };
