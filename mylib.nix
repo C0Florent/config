@@ -27,7 +27,10 @@ let
   # The attribute values will be the result of <nixosSystem> with
   # modules being <hostsDirPath>/<host>/default.nix
   # The hostname will be set automatically.
-  # Directories listed in <skipEntries> will be skipped
+  # Directories listed in <skipEntries> will be skipped.
+  # <args> will be called with the value contained in
+  # <hostsDirPath>/<host>/system.nix, and the result will be
+  # passed as argument to <nixosSystem>
   # AttrSet -> AttrSet of NixOS configurations
   readNixOSHosts = {
     # (Attrset -> NixOS configuration)
@@ -39,7 +42,7 @@ let
     # [String]
     skipEntries ? [ ],
 
-    # Attrset
+    # (String -> AttrSet)
     args ? (_: { }),
   }:
     builtins.readDir hostsDirPath
@@ -61,7 +64,7 @@ let
           ./nixos/modules
           /${hostPath}/configuration.nix
           { networking.hostName = n; }
-        ] ++ lib.optionals (evalArgs ? modules) evalArgs.modules;
+        ] ++ evalArgs.modules or [ ];
       }))
   ;
 in {
