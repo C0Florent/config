@@ -12,5 +12,9 @@ indent_style = space
 [*.{json,lock,md,nix,sh,bash}]
 indent_size = 2
 
+[*.lua]
+indent_style = space
+indent_size = 4
+
 [*.lock]
 indent_size = unset

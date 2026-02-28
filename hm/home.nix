@@ -20,6 +20,7 @@ rec {
     ./delta.nix
     ./plasma
     ./hypr
+    ./mcsr
     ./wezterm.nix
     ./gtk.nix
     ./git.nix
