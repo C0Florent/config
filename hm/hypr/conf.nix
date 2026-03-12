@@ -66,6 +66,10 @@ in
         rounding = 8;
       };
 
+      binds = {
+        scroll_event_delay = 5;
+      };
+
       # Some session-related binds that we specfically don't want in superbinds
       bind = [
         "$mainMod + CTRL, X, exec, uwsm stop"
