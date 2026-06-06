@@ -30,7 +30,7 @@ in
 
       moreutils
 
-      neofetch
+      microfetch
 
       stdmanpages
       linux-manual

@@ -28,6 +28,8 @@ rec {
     ./monash.nix
     ./gh.nix
     ./gpg.nix
+
+    ./lutris.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -55,8 +57,26 @@ rec {
 
     # FOSS alternative Epic Games launcher: CLI and GUI
     legendary-gl
-    rare
-    wineWowPackages.waylandFull
+    # (rare.overrideAttrs (finalAttrs: prevAttrs: {
+    #   version = "1.12.0";
+    #   src = fetchFromGitHub {
+    #     owner = "RareDevs";
+    #     repo = "Rare";
+    #     tag = finalAttrs.version;
+    #     hash = "sha256-a2Lbl6v2qhToRXs/sNyo5xLirKPoPv1EkT9WsOpMw5Y=";
+    #   };
+    #   buildInputs = prevAttrs.buildInputs ++ (with pkgs.python3Packages; [
+    #     setuptools-scm
+    #     pyside6
+    #     vdf
+    #   ]);
+    #   nativeBuildInputs = prevAttrs.nativeBuildInputs ++ (with pkgs.python3Packages; [
+    #     setuptools-scm
+    #     pyside6
+    #     vdf
+    #   ]);
+    # }))
+    wineWow64Packages.waylandFull
   ])
   ++ [
     inputs.unspace.packages.${pkgs.stdenv.hostPlatform.system}.unspace

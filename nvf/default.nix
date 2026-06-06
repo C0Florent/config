@@ -17,6 +17,7 @@
       enableExtraDiagnostics = true;
 
       nix.enable = true;
+      typst.enable = true;
     };
 
     lsp = {
