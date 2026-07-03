@@ -11,8 +11,6 @@
     ./nodebounce.nix
 
     ./steam.nix
-
-    ./monash
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -32,7 +30,7 @@
     "kernel.sysrq" = 1;
   };
 
-  time.timeZone = "Australia/Melbourne";
+  time.timeZone = "Europe/Paris";
   i18n = {
     defaultLocale = "en_GB.UTF-8";
 
