@@ -7,6 +7,7 @@
     ../../hyprland.nix
     ../../registry.nix
     ../../nerdfonts.nix
+    ../../nodebounce.nix
   ];
 
   mycfg.sanedefaults.enable = true;

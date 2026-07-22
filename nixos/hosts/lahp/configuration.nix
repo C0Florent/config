@@ -7,8 +7,7 @@
     ../../hyprland.nix
     ../../registry.nix
     ../../nerdfonts.nix
-
-    ./nodebounce.nix
+    ../../nodebounce.nix
 
     ./steam.nix
   ];
