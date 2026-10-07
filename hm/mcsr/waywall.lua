@@ -38,7 +38,7 @@ local config = {
 local resolutions = {
     thin = { key = "CTRL-Alt_L", w = 340, h = 1080 },
     tall = { key = "CTRL-w", w = 384, h = 16384, sens = 0.53028489 },
-    wide = { key = "*-v", w = 1920, h = 340, ingame = true },
+    wide = { key = "SHIFT-v", w = 1920, h = 340 },
 };
 
 local mirrors = {
@@ -68,7 +68,7 @@ for k, v in pairs(resolutions) do
     end
 end
 
-config.actions["*-x"] = function()
+config.actions["SHIFT-x"] = function()
     if is_process_running("Ninjabrain.*jar") then
         helpers.toggle_floating();
     else

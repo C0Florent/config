@@ -34,6 +34,7 @@ rec {
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "discord"
+    "discord-unwrapped"
   ];
 
   # This ref to pkgs-stable may or may not be relevant.

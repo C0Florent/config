@@ -64,7 +64,7 @@ in
       };
     };
 
-    nix.settings.experimental-features = cfg.applyFunction "nix-command flakes pipe-operators";
+    nix.settings.experimental-features = cfg.applyFunction [ "nix-command" "flakes" "pipe-operators" ];
 
     programs.git = {
       enable = cfg.applyFunction true;
