@@ -10,6 +10,7 @@
     ../../nodebounce.nix
 
     ./steam.nix
+    ./vm.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
